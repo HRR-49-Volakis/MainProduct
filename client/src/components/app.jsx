@@ -28,9 +28,7 @@ class App extends React.Component {
   componentDidMount() {
     axios.get(`/api/products/${this.state.requestedProductId}`)
       .then((response) => {
-        this.setState({productId: response.data.productId})
-        this.setState({productDetails: response.data.productDetails})
-        this.setState({images: response.data.images})
+        this.setState({productId: response.data.productId, productDetails: response.data.productDetails, images: response.data.images})
       })
       .catch(function(err){
         console.log(err);
