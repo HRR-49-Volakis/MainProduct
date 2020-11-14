@@ -1,11 +1,13 @@
 import React from 'react';
 import axios from 'axios';
+import Image from './Image.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       requestedProductId: '4',
+      productName: 'productName goes here',
       productId: '',
       productDetails: {
         designer: '',
@@ -38,11 +40,16 @@ class App extends React.Component {
   render() {
     return(
       <div>
-        <img src={this.state.images[0]}>
-        </img>
-        {this.state.images}
+        <div className='imageGrid'>
+          {
+            this.state.images.map((url) => {
+              return(
+                <Image imageUrl={url} imageAlt={this.state.  productName} />
+              )
+            })
+          }
+        </div>
       </div>
-
     )
   }
 }
