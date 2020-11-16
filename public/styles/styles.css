@@ -12,8 +12,8 @@ body {
 }
 
 .imageContainer {
-  width: 519px;
-  height: 519px;
+  max-width: 519px;
+  max-height: 519px;
   background-color: red;
   margin: 10px;
 }

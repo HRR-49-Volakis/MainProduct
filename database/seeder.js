@@ -39,6 +39,6 @@ const seed = async function() {
     product.images[4] = images[Math.floor(Math.random() * (images.length - 1))];
     let entry = await db.ProductModel.create(product);
   }
-}
+};
 seed();
 

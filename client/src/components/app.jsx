@@ -24,33 +24,33 @@ class App extends React.Component {
         }
       },
       images: []
-    }
+    };
   }
 
   componentDidMount() {
     axios.get(`/api/products/${this.state.requestedProductId}`)
       .then((response) => {
-        this.setState({productId: response.data.productId, productDetails: response.data.productDetails, images: response.data.images})
+        this.setState({productId: response.data.productId, productDetails: response.data.productDetails, images: response.data.images});
       })
-      .catch(function(err){
+      .catch(function(err) {
         console.log(err);
       });
   }
 
   render() {
-    return(
+    return (
       <div>
         <div className='imageGrid'>
           {
-            this.state.images.map((url) => {
-              return(
-                <Image imageUrl={url} imageAlt={this.state.  productName} />
-              )
+            this.state.images.map((url, index) => {
+              return (
+                <Image key={index} imageUrl={url} imageAlt={this.state.productName} />
+              );
             })
           }
         </div>
       </div>
-    )
+    );
   }
 }
 
