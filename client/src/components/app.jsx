@@ -23,8 +23,11 @@ class App extends React.Component {
           packages: ''
         }
       },
-      images: []
+      images: [],
+      currentImage: '',
     };
+    this.addCarousel = this.addCarousel.bind(this);
+    this.removeCarousel = this.removeCarousel.bind(this);
   }
 
   componentDidMount() {
@@ -37,14 +40,43 @@ class App extends React.Component {
       });
   }
 
+  addCarousel(event) {
+    this.setState({currentImage: event.target.src}, function() {
+      let img = document.createElement('img');
+      let container = document.createElement('div');
+      let currentImage = this.state.currentImage;
+      let carousel = document.getElementById('carousel');
+      img.setAttribute('id', 'currentImage');
+      img.setAttribute('src', `${currentImage}`);
+      img.setAttribute('className', 'carouselImage');
+      container.setAttribute('className', 'carouselImageContainer');
+      container.setAttribute('id', 'carouselImageContainer');
+      document.querySelector('body').classList = 'bodyCarousel';
+      carousel.classList = 'carousel';
+      carousel.appendChild(container);
+      container.appendChild(img);
+    });
+  }
+
+  removeCarousel() {
+    this.setState({currentImage: ''}, function() {
+      let node = document.getElementById('carouselImageContainer');
+      let carousel = document.getElementById('carousel');
+      carousel.removeChild(node);
+      carousel.classList = '';
+      document.querySelector('body').classList = '';
+    });
+  }
+
   render() {
     return (
       <div>
+        <div id='carousel' onClick={this.removeCarousel} className =''></div>
         <div className='imageGrid'>
           {
             this.state.images.map((url, index) => {
               return (
-                <Image key={index} imageUrl={url} imageAlt={this.state.productName} />
+                <Image key={index} addCarousel={this.addCarousel} imageUrl={url} imageAlt={this.state.productName} />
               );
             })
           }
