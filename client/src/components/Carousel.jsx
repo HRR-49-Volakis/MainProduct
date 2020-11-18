@@ -5,13 +5,16 @@ import PropTypes from 'prop-types';
 var Carousel = function(props) {
   console.log(props.currentImage, ' currentImage');
   return (
-    <div id='carousel' onClick={props.removeCarousel} className='carousel'>
-      <div id='carouselImageContainer' className='carouselImageContainer'>
-        <img id='currentImage' className='carouselImage' src={props.currentImage}></img>
+    <div>
+      <div id='carousel' className='carousel'>
+        <Exit removeCarousel={props.removeCarousel}/>
+        <div id='carouselContainer'>
+          <div id='carouselImageContainer' className='carouselImageContainer'>
+            <img id='currentImage' className='carouselImage' src={props.currentImage}></img>
+          </div>
+        </div>
       </div>
-      <Exit />
     </div>
-
   );
 };
 

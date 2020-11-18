@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Carousel from './Carousel.jsx';
 import Grid from './Grid.jsx';
+import Exit from './Exit.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -62,6 +63,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        {/* <Exit /> */}
         {this.state.imageLayout}
       </div>
     );
