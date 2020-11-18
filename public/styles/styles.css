@@ -106,13 +106,15 @@ body {
   height: 100%;
   object-fit: cover;
   outline: none;
-  cursor: pointer;
   box-sizing: inherit;
   color: transparent;
   border-style: none;
   left: 0;
   top: 0;
   overflow: none;
+  cursor: -moz-zoom-in;
+  cursor: -webkit-zoom-in;
+  cursor: zoom-in;
 }
 #exitCarousel{
   align-self: flex-start;
