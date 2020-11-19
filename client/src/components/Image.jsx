@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 var Image = function(props) {
   let handleClick = (event) => {
-    props.addCarousel(event);
+    props.addCarousel(event, props.index);
   };
   return (
     <div className='imageContainer'>

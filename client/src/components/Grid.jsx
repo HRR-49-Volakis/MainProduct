@@ -9,7 +9,7 @@ var Grid = function(props) {
         props.images.map((url, index) => {
           console.log(url);
           return (
-            <Image key={index} addCarousel={props.addCarousel} imageUrl={url} imageAlt={props.productName} />
+            <Image key={index} index={index} addCarousel={props.addCarousel} imageUrl={url} imageAlt={props.productName} />
           );
         })
       }
