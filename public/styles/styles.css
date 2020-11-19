@@ -203,8 +203,8 @@ body {
   cursor: zoom-in;
 }
 .zoomedImage{
-  width: 125%;
-  height: 125%;
+  width: 200%;
+  height: 200%;
   cursor: -moz-zoom-out;
   cursor: -webkit-zoom-out;
   cursor: zoom-out;

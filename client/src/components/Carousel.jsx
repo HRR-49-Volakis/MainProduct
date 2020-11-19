@@ -20,7 +20,7 @@ var Carousel = function(props) {
             </div> */}
             {props.images.map(function(image, index) {
               return (
-                <CarouselImage key={index} zoomClickHandler={props.zoomClickHandler} isZoomed={props.isZoomed} index={index} currentImageIndex={props.index} currentImage={image}/>
+                <CarouselImage key={index} zoomClickHandler={props.zoomClickHandler} isZoomed={props.isZoomed} index={index} xDelta={props.xDelta} yDelta={props.yDelta} zoomPanHandler={props.zoomPanHandler}currentImageIndex={props.index} currentImage={image}/>
               );
             })}
             {props.index < props.numberOfImages - 1 ? <RightArrow arrowClickHandler={props.arrowClickHandler}/> : ''}

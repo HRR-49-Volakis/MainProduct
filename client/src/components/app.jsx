@@ -30,13 +30,16 @@ class App extends React.Component {
       imageLayout: [],
       currentIndex: -1,
       numberOfImages: 0,
-      isZoomed: false
+      isZoomed: false,
+      xDelta: 0,
+      yDelta: 0
     };
     this.addCarousel = this.addCarousel.bind(this);
     this.removeCarousel = this.removeCarousel.bind(this);
     this.arrowClickHandler = this.arrowClickHandler.bind(this);
     this.scrollBarClickHandler = this.scrollBarClickHandler.bind(this);
     this.zoomClickHandler = this.zoomClickHandler.bind(this);
+    this.zoomPanHandler = this.zoomPanHandler.bind(this);
   }
 
   componentDidMount() {
@@ -83,11 +86,17 @@ class App extends React.Component {
     }
   }
 
-  zoomClickHandler() {
-    console.log('zoom clickded');
+  zoomClickHandler(xDelta, yDelta) {
     this.setState({isZoomed: !this.state.isZoomed}, function() {
-      this.setState({imageLayout: [<Carousel images={this.state.images} index={this.state.currentIndex} removeCarousel={this.removeCarousel} currentImage={this.state.currentImage} isZoomed={this.state.isZoomed} zoomClickHandler={this.zoomClickHandler} scrollBarClickHandler={this.scrollBarClickHandler} arrowClickHandler={this.arrowClickHandler} numberOfImages={this.state.numberOfImages}/>]});
+      if (this.state.isZoomed) {
+        this.zoomPanHandler(xDelta, yDelta);
+      }
     });
+  }
+
+  zoomPanHandler(xDelta, yDelta) {
+    this.setState({xDelta: xDelta, yDelta: yDelta, imageLayout: [<Carousel images={this.state.images} index={this.state.currentIndex} removeCarousel={this.removeCarousel} currentImage={this.state.currentImage} xDelta={xDelta} yDelta={yDelta} isZoomed={this.state.isZoomed} zoomPanHandler={this.zoomPanHandler} zoomClickHandler={this.zoomClickHandler} scrollBarClickHandler={this.scrollBarClickHandler} arrowClickHandler={this.arrowClickHandler} numberOfImages={this.state.numberOfImages}/>]});
+
   }
 
   render() {
