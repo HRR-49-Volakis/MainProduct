@@ -102,7 +102,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {/* <Exit /> */}
         {this.state.imageLayout}
       </div>
     );
