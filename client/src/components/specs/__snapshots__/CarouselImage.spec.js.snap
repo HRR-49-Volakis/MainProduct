@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CarouselImage snapshot renders 1`] = `
+<div
+  className="carouselImageContainer"
+  onClick={[Function]}
+  style={Object {}}
+>
+  <img
+    className="currentImage"
+    onMouseMove={[Function]}
+    style={Object {}}
+  />
+</div>
+`;
