@@ -3,6 +3,7 @@ import axios from 'axios';
 import Carousel from './Carousel.jsx';
 import Grid from './Grid.jsx';
 import Exit from './Exit.jsx';
+import '../styles/styles.css';
 
 class App extends React.Component {
   constructor(props) {
