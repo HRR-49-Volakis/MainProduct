@@ -44,7 +44,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`/api/products/${this.state.requestedProductId}`)
+    axios.get(`/api/main/${this.state.requestedProductId}`)
       .then((response) => {
         this.setState({productId: response.data.productId, productDetails: response.data.productDetails, images: response.data.images}, function() {
           this.setState({imageLayout: [<Grid addCarousel= {this.addCarousel} productName={this.state.productName} images={this.state.images}/>], numberOfImages: this.state.images.length});
