@@ -4,12 +4,13 @@ import Carousel from './Carousel.jsx';
 import Grid from './Grid.jsx';
 import Exit from './Exit.jsx';
 import '../styles/styles.css';
+import NavBar from './NavBar.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      requestedProductId: '4',
+      requestedProductId: Math.floor(Math.random() * 100).toString(),
       productName: 'productName goes here',
       productId: '',
       productDetails: {
@@ -103,6 +104,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <NavBar />
         {this.state.imageLayout}
       </div>
     );

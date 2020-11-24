@@ -7,7 +7,7 @@
     "test": "jest --collect-coverage",
     "test:watch": "jest --watch",
     "start": "node server/server.js",
-    "build": "webpack",
+    "build": "webpack -w",
     "seed": "node database/seeder.js"
   },
   "repository": {
