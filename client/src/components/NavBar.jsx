@@ -11,7 +11,7 @@ var NavBar = function(props) {
       <div className='menuContainer'>
         <Menu />
       </div>
-      <div className='navBarContainer'>
+      <div id='navBarContainer' className='navBarContainer'>
         <Logo />
         <ProductsRoomsDeals />
         <SearchBar />
