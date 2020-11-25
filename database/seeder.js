@@ -3,10 +3,23 @@ const db = require('./products.js');
 
 let images = ['https://fec-bucket.s3.us-east-2.amazonaws.com/3.jpg', 'https://fec-bucket.s3.us-east-2.amazonaws.com/1.jpeg?versionId=o3SgkIxbI_knJSYZBhQUXbMXbBxMcFwM', 'https://fec-bucket.s3.us-east-2.amazonaws.com/2.webp?versionId=FaRu0AgkJ0fpnj7GrvG8n_MfcJKvKEJ6', 'https://fec-bucket.s3.us-east-2.amazonaws.com/4.webp?versionId=ngmKVQTee1cFMLnIjgl45vj47CQL2410', 'https://fec-bucket.s3.us-east-2.amazonaws.com/5.jpg?versionId=8.mB1zX__f9P90s4pYnzoTBkbqOM_COq', 'https://fec-bucket.s3.us-east-2.amazonaws.com/6.jpg?versionId=9m39SHXytOvpWaeJzQUavKRkwb8.bV_8', 'https://fec-bucket.s3.us-east-2.amazonaws.com/7.jpg?versionId=HdkFJZ1zCalZzyIINIFCUtWaB7SRV7Kp', 'https://fec-bucket.s3.us-east-2.amazonaws.com/8.jpg?versionId=rLK_ajRyOrihgRzraxhITLp2S7L5GVfz', 'https://fec-bucket.s3.us-east-2.amazonaws.com/9.webp?versionId=pyCAZ8h3x7ATZdE7j1uvT7mCGRqtun9u'];
 
+let names = ['vecka', 'idag', 'imorgon', 'Hornavan', 'Virihaure', 'Siljan', 'Torneträsk', 'Kallsjön', 'Djungelskog', 'Mälaren', 'Tjörn', 'Öland', 'Gräsö'];
+
+
 const seed = async function() {
   for (let i = 1; i <= 100; i++) {
+    let productIdentifier = '';
+    let first = Math.floor(Math.random() * 1000);
+    first = first.toString();
+    while (first.length < 3) { first = '0' + first; }
+    let second = Math.floor(Math.random() * 1000);
+    second = second.toString();
+    while (second.length < 3) { second = '0' + second; }
+    productIdentifier = first + '.' + second + '.' + i;
     let product = {};
     product.productId = i;
+    product.productIdentifier = productIdentifier;
+    product.productName = names[Math.floor(Math.random() * (names.length - 1))].toUpperCase();
     product.productDetails = {};
     product.productDetails.designer = faker.name.findName();
     product.productDetails.materials = [];

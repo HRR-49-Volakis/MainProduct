@@ -5,14 +5,17 @@ import Grid from './Grid.jsx';
 import Exit from './Exit.jsx';
 import '../styles/styles.css';
 import NavBar from './NavBar.jsx';
+import ProductPath from './ProductPath.jsx';
+import ProductIdentifier from './ProductIdentifier.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       requestedProductId: Math.floor(Math.random() * 100).toString(),
-      productName: 'productName goes here',
+      productName: '',
       productId: '',
+      productIdentifier: '',
       productDetails: {
         designer: '',
         materials: [],
@@ -47,7 +50,7 @@ class App extends React.Component {
   componentDidMount() {
     axios.get(`/api/main/${this.state.requestedProductId}`)
       .then((response) => {
-        this.setState({productId: response.data.productId, productDetails: response.data.productDetails, images: response.data.images}, function() {
+        this.setState({productId: response.data.productId, productName: response.data.productName, productIdentifier: response.data.productIdentifier, productDetails: response.data.productDetails, images: response.data.images}, function() {
           this.setState({imageLayout: [<Grid addCarousel= {this.addCarousel} productName={this.state.productName} images={this.state.images}/>], numberOfImages: this.state.images.length});
         });
       })
@@ -105,7 +108,9 @@ class App extends React.Component {
     return (
       <div>
         <NavBar />
+        <ProductPath productName={this.state.productName}/>
         {this.state.imageLayout}
+        <ProductIdentifier productIdentifier={this.state.productIdentifier}/>
       </div>
     );
   }

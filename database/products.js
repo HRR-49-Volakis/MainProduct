@@ -3,6 +3,8 @@ mongoose.connect('mongodb://localhost/Products', { useNewUrlParser: true, useUni
 
 const ProductSchema = mongoose.Schema({
   productId: { type: String, unique: true },
+  productIdentifier: String,
+  productName: String,
   productDetails: {
     designer: String,
     materials: [{
