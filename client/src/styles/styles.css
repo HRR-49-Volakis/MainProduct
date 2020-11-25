@@ -45,9 +45,9 @@ body {
 
 .navLinks {
   padding: 10px 15px;
-  font-family: 'Noto Sans', sans-serif;;
-  /* font-size: .875rem;
-  font-weight: 700; */
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 700;
+  font-size: .9em;
   color: #111;
   cursor: pointer;
 }
@@ -58,16 +58,65 @@ body {
 
 #searchBar {
   background-color: rgba(1, 1, 1, .05);
-  width: 500px;
-  height: 50px;
+  width: calc(100vw - 1200px + 375px);
+  height: 55px;
   border-radius: 50em;
-  margin-left: 20px;
+  margin-left: 40px;
   cursor: text;
+  display: flex;
 }
 
 #searchBar:hover {
   background-color: rgba(1, 1, 1, .15);
 }
+
+.searchField {
+  border: none;
+  outline: none;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 200;
+  background-color: rgba(1, 1, 1, 0);
+  width: 220px;
+  font-size: 1em;
+}
+
+.searchField:hover {
+  background-color: rgba(1, 1, 1, 0);
+}
+
+.searchField::-webkit-search-cancel-button {
+  display:none;
+}
+
+.userIconContainer {
+  margin-left: 40px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconContainer {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  cursor: pointer;
+}
+.iconContainer:hover {
+  background-color: rgba(1, 1, 1, .04);
+}
+.userIcons {
+  color:#111;
+  /* margin: 10px; */
+}
+
+.st0{fill:#161717;}
+.st1{fill:#0C5099;}
+
 
 .imageGrid {
   display: flex;
@@ -105,6 +154,10 @@ body {
   .navBarContainer {
     margin-left: 20px;
   }
+  #searchBar {
+    margin-left:20px;
+    width: 680px;
+  }
 }
 
 @media only screen and (max-width: 900px) {
@@ -135,6 +188,7 @@ body {
 }
 
 .carousel {
+  top: 0;
   width: 100vw;
   height: 100vh;
   background-color: white;
@@ -150,12 +204,12 @@ body {
 }
 
 @-webkit-keyframes slideIn {
-  from {bottom: -1000px; opacity: 0}
-  to {bottom: 0; opacity: 1}
+  from {top: 100vh; opacity: 0; z-index: -1;}
+  to {top: 0; opacity: 1; z-index: 1000;}
 }
 @keyframes slideIn {
-  from {bottom: -1000px; opacity: 0}
-  to {bottom: 0; opacity: 1}
+  from {top: 100vh; opacity: 0; z-index: -1; }
+  to {top: 0; opacity: 1; z-index: 1000;}
 }
 
 .bodyCarousel {

@@ -3,6 +3,7 @@ import Logo from './Logo.jsx';
 import ProductsRoomsDeals from './ProductsRoomsDeals.jsx';
 import Menu from './Menu.jsx';
 import SearchBar from './SearchBar.jsx';
+import UserIcons from './UserIcons.jsx';
 
 var NavBar = function(props) {
   return (
@@ -14,6 +15,7 @@ var NavBar = function(props) {
         <Logo />
         <ProductsRoomsDeals />
         <SearchBar />
+        <UserIcons />
       </div>
     </div>
   );
