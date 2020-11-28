@@ -51,7 +51,7 @@ class App extends React.Component {
     axios.get(`/api/main/${this.state.requestedProductId}`)
       .then((response) => {
         this.setState({productId: response.data.productId, productName: response.data.productName, productIdentifier: response.data.productIdentifier, productDetails: response.data.productDetails, images: response.data.images}, function() {
-          this.setState({imageLayout: [<Grid addCarousel= {this.addCarousel} productName={this.state.productName} images={this.state.images}/>], numberOfImages: this.state.images.length});
+          this.setState({numberOfImages: this.state.images.length});
         });
       })
       .catch(function(err) {
@@ -68,7 +68,7 @@ class App extends React.Component {
   }
 
   removeCarousel() {
-    this.setState({currentImage: '', isZoomed: false, imageLayout: [<Grid addCarousel= {this.addCarousel} productName={this.state.productName} images={this.state.images}/>]}, function() {
+    this.setState({currentImage: '', isZoomed: false, imageLayout: []}, function() {
       document.querySelector('body').classList = '';
     });
   }
@@ -109,6 +109,7 @@ class App extends React.Component {
       <div>
         <NavBar />
         <ProductPath productName={this.state.productName}/>
+        <Grid addCarousel= {this.addCarousel} productName={this.state.productName} images={this.state.images}/>
         {this.state.imageLayout}
         <ProductIdentifier productIdentifier={this.state.productIdentifier}/>
       </div>
