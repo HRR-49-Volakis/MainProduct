@@ -7,13 +7,13 @@ let CarouselImage = function(props) {
   let difference = props.index - props.currentImageIndex;
 
   var clickHandler = function(event) {
-    let {xDelta, yDelta} = ImagePan(event.pageX, event.pageY);
+    let {xDelta, yDelta} = ImagePan(event.clientX, event.clientY);
     props.zoomClickHandler(xDelta, yDelta);
   };
 
   var handleMouseMove = function(event) {
     if (props.isZoomed) {
-      let {xDelta, yDelta} = ImagePan(event.pageX, event.pageY);
+      let {xDelta, yDelta} = ImagePan(event.clientX, event.clientY);
       // console.log(xDelta, yDelta);
       props.zoomPanHandler(xDelta, yDelta);
     }
