@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/Products', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const ProductSchema = mongoose.Schema({
   productId: { type: String, unique: true },
@@ -25,6 +24,8 @@ const ProductSchema = mongoose.Schema({
   images: [String]
 });
 
+const getProductById = (productId) => ProductModel.findOne({ productId });
+
 let ProductModel = mongoose.model('Products', ProductSchema);
 
-module.exports = {ProductModel};
+module.exports = { getProductById };
