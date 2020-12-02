@@ -28,4 +28,4 @@ const getProductById = (productId) => ProductModel.findOne({ productId });
 
 let ProductModel = mongoose.model('Products', ProductSchema);
 
-module.exports = { getProductById };
+module.exports.getProductById = getProductById;
