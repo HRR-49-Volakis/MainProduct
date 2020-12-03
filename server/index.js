@@ -20,7 +20,8 @@ app.post('/api/main', async function(req, res) {
   res.status(200).send(response);
 });
 
-app.use('/api', routes.ProductRoutes);
+app.use('/api/product', routes.ProductRoutes);
+app.use('/api/user', routes.UserRoutes);
 app.use('/', routes.WebRoutes);
 
 module.exports = app;

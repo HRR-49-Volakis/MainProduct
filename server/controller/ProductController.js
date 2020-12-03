@@ -3,7 +3,6 @@ const {
   ProductsModel
 } = require('../../database/model');
 
-
 exports.productById = (req, res, next) => {
   const productId = (req.params.productId && req.params.productId !== '') ? req.params.productId : 2;
   ProductsModel.getProductById(productId)

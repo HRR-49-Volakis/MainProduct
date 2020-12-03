@@ -24,8 +24,17 @@ const ProductSchema = mongoose.Schema({
   images: [String]
 });
 
+ProductSchema.index({ productId: 1, productName: 1 });
+const ProductModel = mongoose.model('Products', ProductSchema);
+
+const insertProducts = async (products) => {
+  if (!products) return products;
+  return ProductModel.insertMany(products);
+};
+
 const getProductById = (productId) => ProductModel.findOne({ productId });
 
-let ProductModel = mongoose.model('Products', ProductSchema);
-
-module.exports.getProductById = getProductById;
+module.exports = {
+  insertProducts,
+  getProductById
+};

@@ -1,12 +1,15 @@
 const faker = require('faker');
-const db = require('./products.js');
+const { getInstance, shutDownInstance } = require('./index');
+const { ProductsModel } = require('../database/model');
 
 let images = ['https://fec-bucket.s3.us-east-2.amazonaws.com/ikea1.webp', 'https://fec-bucket.s3.us-east-2.amazonaws.com/ikea2.webp', 'https://fec-bucket.s3.us-east-2.amazonaws.com/2.webp?versionId=FaRu0AgkJ0fpnj7GrvG8n_MfcJKvKEJ6', 'https://fec-bucket.s3.us-east-2.amazonaws.com/4.webp?versionId=ngmKVQTee1cFMLnIjgl45vj47CQL2410', 'https://fec-bucket.s3.us-east-2.amazonaws.com/ikea5.jpeg', 'https://fec-bucket.s3.us-east-2.amazonaws.com/ikea6.webp', 'https://fec-bucket.s3.us-east-2.amazonaws.com/ikea7.webp', 'https://fec-bucket.s3.us-east-2.amazonaws.com/ikea8.webp', 'https://fec-bucket.s3.us-east-2.amazonaws.com/ikea10.webp', 'https://fec-bucket.s3.us-east-2.amazonaws.com/ikea9.webp'];
 
 let names = ['vecka', 'idag', 'imorgon', 'Hornavan', 'Virihaure', 'Siljan', 'Torneträsk', 'Kallsjön', 'Djungelskog', 'Mälaren', 'Tjörn', 'Öland', 'Gräsö'];
 
 
-const seed = async function() {
+const seed = function() {
+  getInstance();
+  const products = [];
   for (let i = 1; i <= 100; i++) {
     let productIdentifier = '';
     let first = Math.floor(Math.random() * 1000);
@@ -50,8 +53,14 @@ const seed = async function() {
     product.images[2] = images[Math.floor(Math.random() * (images.length - 1))];
     product.images[3] = images[Math.floor(Math.random() * (images.length - 1))];
     product.images[4] = images[Math.floor(Math.random() * (images.length - 1))];
-    let entry = await db.ProductModel.create(product);
+    products.push(product);
   }
+  ProductsModel.insertProducts(products)
+    .then(result => {
+      shutDownInstance();
+    })
+    .catch(e => console.log('there was an error ', e));
+
 };
 seed();
 
