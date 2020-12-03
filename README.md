@@ -10,17 +10,17 @@
   - https://github.com/teamName/repo
   - https://github.com/teamName/repo
 
-## Table of Contents
+# Table of Contents
 
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
 
-## Usage
+# Usage
 
 > Some usage instructions
 
-## Requirements
+# Requirements
 
 An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
@@ -33,11 +33,9 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 #Endpoints
   Web (/)
-    - 
-  Product (/api/product)
-    -
-  User (/api/user)
-    - User fields: 
+    - Product (/api/product)
+    - User (/api/user)
+      - User fields: 
       - {
           "userId": 2,
           "name": "Giovani",
