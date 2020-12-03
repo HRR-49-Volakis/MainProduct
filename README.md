@@ -26,7 +26,7 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
   2. Product (/api/product)
   3. User (/api/user)
       - User fields: 
-      - {
+        {
           "userId": 2,
           "name": "Giovani",
           "last": "Rubini",
@@ -39,7 +39,7 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
           "zip": "21704",
           "created_date": "2018-03-29",
           "updated_at": ""
-	      }
+	}
     - logIn (/login)
         . this endpoint will allow you to view the information of for the account of the specified user.
         . the JSON body needed is: 
