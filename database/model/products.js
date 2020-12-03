@@ -29,7 +29,6 @@ const ProductModel = mongoose.model('Products', ProductSchema);
 
 const insertProducts = async (products) => {
   if (!products) return products;
-  console.log(products)
   return ProductModel.insertMany(products);
 };
 

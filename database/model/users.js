@@ -5,8 +5,9 @@ const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   last: { type: String, required: true },
   username: { type: String, required: true },
+  password: { type: String, required: true },
   sex: { type: String, required: true },
-  email: { type: String, required: true },
+  email: { type: String, required: true, unique: true, dropDups: true },
   city: { type: String, required: true },
   state: { type: String, required: true },
   zip: { type: String, required: true },
@@ -25,6 +26,15 @@ const createUser = (user) => {
   return newUser.save();
 };
 
+const logIn = ({ username, password }) => UserModel.findOne({ username, password });
+const updateUser = (user) => UserModel.findOneAndUpdate({ username: user.username, password: user.password }, user);
+const deleteUser = ({ username, password }) => UserModel.deleteOne({ username, password });
 
 
-module.exports.createUser = createUser;
+
+module.exports = {
+  logIn,
+  createUser,
+  updateUser,
+  deleteUser
+};
