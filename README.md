@@ -27,11 +27,11 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 - Node 6.13.0
 - etc
 
-## Development
+# Development
 
-### Installing Dependencies
+# Installing Dependencies
 
-####Endpoints
+#Endpoints
   Web (/)
     - 
   Product (/api/product)
