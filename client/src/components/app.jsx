@@ -48,10 +48,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`/api/main/${this.state.requestedProductId}`)
+    axios.get(`/api/product/${this.state.requestedProductId}`)
       .then((response) => {
-        this.setState({productId: response.data.productId, productName: response.data.productName, productIdentifier: response.data.productIdentifier, productDetails: response.data.productDetails, images: response.data.images}, function() {
-          this.setState({numberOfImages: this.state.images.length});
+        this.setState({ productId: response.data.productId, productName: response.data.productName, productIdentifier: response.data.productIdentifier, productDetails: response.data.productDetails, images: response.data.images }, function() {
+          this.setState({ numberOfImages: this.state.images.length });
         });
       })
       .catch(function(err) {
@@ -60,15 +60,15 @@ class App extends React.Component {
   }
 
   addCarousel(event, index) {
-    this.setState({currentImage: event.target.src, currentIndex: index}, function() {
-      this.setState({imageLayout: [<Carousel images={this.state.images} index={this.state.currentIndex} removeCarousel={this.removeCarousel} currentImage={this.state.currentImage} isZoomed={this.state.isZoomed} zoomClickHandler={this.zoomClickHandler} scrollBarClickHandler={this.scrollBarClickHandler} arrowClickHandler={this.arrowClickHandler} numberOfImages={this.state.numberOfImages}/>, ...this.state.imageLayout]}, function() {
+    this.setState({ currentImage: event.target.src, currentIndex: index }, function() {
+      this.setState({ imageLayout: [<Carousel images={this.state.images} index={this.state.currentIndex} removeCarousel={this.removeCarousel} currentImage={this.state.currentImage} isZoomed={this.state.isZoomed} zoomClickHandler={this.zoomClickHandler} scrollBarClickHandler={this.scrollBarClickHandler} arrowClickHandler={this.arrowClickHandler} numberOfImages={this.state.numberOfImages} />, ...this.state.imageLayout] }, function() {
         document.querySelector('body').classList = 'bodyCarousel';
       });
     });
   }
 
   removeCarousel() {
-    this.setState({currentImage: '', isZoomed: false, imageLayout: []}, function() {
+    this.setState({ currentImage: '', isZoomed: false, imageLayout: [] }, function() {
       document.querySelector('body').classList = '';
     });
   }
@@ -76,7 +76,7 @@ class App extends React.Component {
   arrowClickHandler(isLeft) {
     let newImage = isLeft ? this.state.images[this.state.currentIndex - 1] : this.state.images[this.state.currentIndex + 1];
     let newIndex = isLeft ? this.state.currentIndex - 1 : this.state.currentIndex + 1;
-    this.setState({currentImage: newImage, currentIndex: newIndex, isZoomed: false, imageLayout: [<Carousel images={this.state.images} index={newIndex} removeCarousel={this.removeCarousel} currentImage={newImage} isZoomed={false} zoomClickHandler={this.zoomClickHandler} scrollBarClickHandler={this.scrollBarClickHandler} arrowClickHandler={this.arrowClickHandler} numberOfImages={this.state.numberOfImages}/>]}, function() {
+    this.setState({ currentImage: newImage, currentIndex: newIndex, isZoomed: false, imageLayout: [<Carousel images={this.state.images} index={newIndex} removeCarousel={this.removeCarousel} currentImage={newImage} isZoomed={false} zoomClickHandler={this.zoomClickHandler} scrollBarClickHandler={this.scrollBarClickHandler} arrowClickHandler={this.arrowClickHandler} numberOfImages={this.state.numberOfImages} />] }, function() {
       console.log(this.state.currentIndex);
     });
     console.log(isLeft ? 'left' : 'right');
@@ -86,13 +86,13 @@ class App extends React.Component {
     console.log('scroll index: ', index);
     if (this.state.currentIndex !== index) {
       let newImage = this.state.images[index];
-      this.setState({currentImage: newImage, currentIndex: index, isZoomed: false, imageLayout: [<Carousel images={this.state.images} index={index} removeCarousel={this.removeCarousel} currentImage={newImage} isZoomed={false} zoomClickHandler={this.zoomClickHandler} scrollBarClickHandler={this.scrollBarClickHandler} arrowClickHandler={this.arrowClickHandler} numberOfImages={this.state.numberOfImages}/>]}, function() {
+      this.setState({ currentImage: newImage, currentIndex: index, isZoomed: false, imageLayout: [<Carousel images={this.state.images} index={index} removeCarousel={this.removeCarousel} currentImage={newImage} isZoomed={false} zoomClickHandler={this.zoomClickHandler} scrollBarClickHandler={this.scrollBarClickHandler} arrowClickHandler={this.arrowClickHandler} numberOfImages={this.state.numberOfImages} />] }, function() {
       });
     }
   }
 
   zoomClickHandler(xDelta, yDelta) {
-    this.setState({isZoomed: !this.state.isZoomed}, function() {
+    this.setState({ isZoomed: !this.state.isZoomed }, function() {
       if (this.state.isZoomed) {
         this.zoomPanHandler(xDelta, yDelta);
       }
@@ -100,7 +100,7 @@ class App extends React.Component {
   }
 
   zoomPanHandler(xDelta, yDelta) {
-    this.setState({xDelta: xDelta, yDelta: yDelta, imageLayout: [<Carousel images={this.state.images} index={this.state.currentIndex} removeCarousel={this.removeCarousel} currentImage={this.state.currentImage} xDelta={xDelta} yDelta={yDelta} isZoomed={this.state.isZoomed} zoomPanHandler={this.zoomPanHandler} zoomClickHandler={this.zoomClickHandler} scrollBarClickHandler={this.scrollBarClickHandler} arrowClickHandler={this.arrowClickHandler} numberOfImages={this.state.numberOfImages}/>]});
+    this.setState({ xDelta: xDelta, yDelta: yDelta, imageLayout: [<Carousel images={this.state.images} index={this.state.currentIndex} removeCarousel={this.removeCarousel} currentImage={this.state.currentImage} xDelta={xDelta} yDelta={yDelta} isZoomed={this.state.isZoomed} zoomPanHandler={this.zoomPanHandler} zoomClickHandler={this.zoomClickHandler} scrollBarClickHandler={this.scrollBarClickHandler} arrowClickHandler={this.arrowClickHandler} numberOfImages={this.state.numberOfImages} />] });
 
   }
 
@@ -108,10 +108,10 @@ class App extends React.Component {
     return (
       <div>
         <NavBar />
-        <ProductPath productName={this.state.productName}/>
-        <Grid addCarousel= {this.addCarousel} productName={this.state.productName} images={this.state.images}/>
+        <ProductPath productName={this.state.productName} />
+        <Grid addCarousel={this.addCarousel} productName={this.state.productName} images={this.state.images} />
         {this.state.imageLayout}
-        <ProductIdentifier productIdentifier={this.state.productIdentifier}/>
+        <ProductIdentifier productIdentifier={this.state.productIdentifier} />
       </div>
     );
   }
