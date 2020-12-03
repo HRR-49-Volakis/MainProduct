@@ -40,7 +40,7 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
           "created_date": "2018-03-29",
           "updated_at": ""
 	}
-    - logIn (/login)
+      - logIn (/login)
         . this endpoint will allow you to view the information of for the account of the specified user.
         . the JSON body needed is: 
           - {
@@ -55,7 +55,7 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
            - {
                 message: "user does not exist"
              }
-    - createUser (/create)
+      - createUser (/create)
         . this endpoint will allow you to create a user with a userId and a unique email
         . the JSON body needed is:
           - {
@@ -82,7 +82,7 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
            - {
                 message: "error in the creation"
              }
-    - updateAccount (/update)
+      - updateAccount (/update)
         . this endpoint will allow you to update every field except the usename and the password
         . the JSON body needed is:
           - {
@@ -109,7 +109,7 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
            - {
                 message: "user does not exist"
              }
-    - deleteAccount (/delete)
+      - deleteAccount (/delete)
         . this enpoint will allow the user to delete his account by providing the username and password
         .the JSONl body needed is:
           - {
