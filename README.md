@@ -21,7 +21,7 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 # Installing Dependencies
 
-#Endpoints
+# Endpoints
   Web (/)
     - Product (/api/product)
     - User (/api/user)
