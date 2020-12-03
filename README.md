@@ -1,15 +1,5 @@
 # Main-Product-Display
 
-> Project description
-
-
-## Related Projects
-
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-
 # Table of Contents
 
 1. [Usage](#Usage)
