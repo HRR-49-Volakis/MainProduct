@@ -81,12 +81,12 @@
 // 		  'The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients'
 // 		)
 
-// CREATE TABLE package (
-// 	id INT UNIQUE NOT NULL GENERATED ALWAYS AS IDENTITY,
-// 	name VARCHAR(100) NOT NULL,
-// 	description VARCHAR(200) NOT NULL,
-// 	dimensions VARCHAR(50) NOT NULL,
-// 	weight VARCHAR(10) NOT NULL
+// CREATE TABLE package(
+//   id INT UNIQUE NOT NULL GENERATED ALWAYS AS IDENTITY,
+//   name VARCHAR(100) NOT NULL,
+//   description VARCHAR(200) NOT NULL,
+//   dimensions VARCHAR(50) NOT NULL,
+//   weight VARCHAR(10) NOT NULL
 // );
 
 // INSERT INTO package (name, description, dimensions, weight)
@@ -124,9 +124,9 @@
 // 		('giovani', 'rubini', 'grubini', 'password', 'M', 'grubini@gmail.com', 'Frederick', 'Maryland', '21704', '2020-12-03'),
 // 		('derek', 'warner', 'dwarner', 'password', 'M', 'dwarner@gmail.com', 'Portland', 'Oregon', '22314', '2020-12-03')
 
-// CREATE TABLE image (
-// 	id INT UNIQUE NOT NULL GENERATED ALWAYS AS IDENTITY,
-// 	url VARCHAR(200) NOT NULL
+// CREATE TABLE image(
+//   id INT UNIQUE NOT NULL GENERATED ALWAYS AS IDENTITY,
+//   url VARCHAR(200) NOT NULL
 // );
 
 // INSERT INTO image (url)
