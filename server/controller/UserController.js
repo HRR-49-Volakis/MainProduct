@@ -1,18 +1,18 @@
 const express = require('express');
 const {
   UserModel
-} = require('../../database/model');
+} = require('../../database/mongo/model');
 
 
 exports.signUp = (req, res, next) => {
   const { user = null } = req.body;
   UserModel.createUser(user)
     .then(result => {
-      console.log(result);
+      res.status(200).send({ message: 'user created successfuly' });
     })
     .catch(e => {
       console.log('error creating a user ', e);
-      res.status(404).send({ message: 'error in the creation' });
+      res.status(404).send({ message: git });
     });
 };
 exports.logIn = (req, res, next) => {

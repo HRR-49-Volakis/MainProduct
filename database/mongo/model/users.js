@@ -31,10 +31,7 @@ const updateUser = (user) => UserModel.findOneAndUpdate({ username: user.usernam
 const deleteUser = ({ username, password }) => UserModel.deleteOne({ username, password });
 
 
-
-module.exports = {
-  logIn,
-  createUser,
-  updateUser,
-  deleteUser
-};
+module.exports.LogIn = logIn;
+module.exports.createUser = createUser;
+module.exports.updateUser = updateUser;
+module.exports.deleteUser = deleteUser;
