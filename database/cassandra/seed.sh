@@ -1,0 +1,3 @@
+cqlsh LOCALHOST 9042 -u casssandra -p cassandra -k ikea  -e "COPY product (id, name, designer, care, materials, package, images) FROM '/Users/giovanirubini/Documents/Development/hackreactor/hrr-49/MainProduct/database/cassandra/csv/product.csv' WITH DELIMITER='#' AND HEADER=TRUE;"
+
+cqlsh LOCALHOST 9042 -u casssandra -p cassandra -k ikea  -e "COPY member (id, name, last, username, password, sex, email, city, state, zip, created_at, updated_at) FROM '/Users/giovanirubini/Documents/Development/hackreactor/hrr-49/MainProduct/database/cassandra/csv/member.csv' WITH DELIMITER='#' AND HEADER=TRUE;"
