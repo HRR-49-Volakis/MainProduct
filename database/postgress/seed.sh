@@ -3,28 +3,21 @@
 ###################################################
 # Bash script to create database and seed
 ###################################################
-
-# Variable Definitions
-# Path to directory bash script is living
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-
 # Database Variable Definitions
 DATABASE="ikea"
-USER="root"
+HOST=localhost
+USER="giovanirubini"
+PORT=5432
 
-# Output Filename for Faker File
-OUTPUT="records.csv"
-FILEPATH="$DIR/$OUTPUT"
-# if parameter 1 is not passed as argument default records to be generated to 1000000
-LINES=${1:-1000000}
+# ### Import Our posts.csv file to seed Database ###
+psql -Atx -U $USER -d $DATABASE -c "COPY detail (designer, care) FROM '/Users/giovanirubini/Documents/Development/hackreactor/hrr-49/MainProduct/database/postgress/csv/detail.csv' DELIMITER '#' CSV HEADER;"
 
-### Import Our Database ###
-# Dont specify a database since CREATE DATABASE is in schema.sql
-SCHEMA="$DIR/schema.sql"
-psql -U $USER < $SCHEMA
+psql -Atx -U $USER -d $DATABASE -c "COPY image (url) FROM '/Users/giovanirubini/Documents/Development/hackreactor/hrr-49/MainProduct/database/postgress/csv/image.csv' DELIMITER '#' CSV HEADER;"
 
-### Run Our Generator Script ###
-node generator.js --output=$FILEPATH --lines=$LINES
+psql -Atx -U $USER -d $DATABASE -c "COPY material (name, description) FROM '/Users/giovanirubini/Documents/Development/hackreactor/hrr-49/MainProduct/database/postgress/csv/material.csv' DELIMITER '#' CSV HEADER;"
 
-### Import Our posts.csv file to seed Database ###
-psql -U $USER -d $DATABASE -c "COPY $DATABASE FROM '$FILEPATH' CSV HEADER;
+psql -Atx -U $USER -d $DATABASE -c "COPY package (name, description, dimensions, weight) FROM '/Users/giovanirubini/Documents/Development/hackreactor/hrr-49/MainProduct/database/postgress/csv/package.csv' DELIMITER '#' CSV HEADER;"
+
+psql -Atx -U $USER -d $DATABASE -c "COPY product (name, material_ids, image_ids, detail_id, package_id) FROM '/Users/giovanirubini/Documents/Development/hackreactor/hrr-49/MainProduct/database/postgress/csv/product.csv' DELIMITER '#' CSV HEADER;"
+
+psql -Atx -U $USER -d $DATABASE -c "COPY member (name, last, username, password, sex, email, city, state, zip, created_at, updated_at) FROM '/Users/giovanirubini/Documents/Development/hackreactor/hrr-49/MainProduct/database/postgress/csv/member.csv' DELIMITER '#' CSV HEADER;"
