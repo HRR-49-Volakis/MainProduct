@@ -1,19 +1,19 @@
-const path = require('path');
-const mongoose = require('mongoose');
+const mongo = require('./mongo');
+const postgress = require('./postgress');
+const cassandra = require('./cassandra');
 
+db = '';
 
-const getInstance = () => {
-  mongoose.connect('mongodb://localhost/ikea', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
-    .then(result => console.log('connected '))
-    .catch(err => console.log('connection error ', err));
-};
+const setDB = (database) => db = database;
+const clearDB = () => db = '';
 
-const shutDownInstance = () => {
-  mongoose.connection.close();
-};
 
 module.exports = {
-  getInstance,
-  shutDownInstance
+  mongo,
+  postgress,
+  cassandra,
 };
 
+global.db = db;
+global.setDB = setDB;
+global.clearDB = clearDB;

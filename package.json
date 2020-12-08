@@ -22,10 +22,13 @@
   "homepage": "https://github.com/Hack-Reactor-Team-Lannister/Main-Product-Display#readme",
   "dependencies": {
     "axios": "^0.21.0",
+    "cassandra-driver": "^4.6.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "lodash": "^4.17.20",
     "mongoose": "^5.10.13",
     "nodemon": "^2.0.6",
+    "pg": "^8.5.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
@@ -43,6 +46,8 @@
     "file-system": "^2.2.2",
     "path": "^0.12.7",
     "faker": "^5.1.0",
+    "yargs": "^16.2.0",
+    "fs": "0.0.1-security",
     "eslint": "^7.13.0",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "eslint-plugin-react": "^7.21.5",

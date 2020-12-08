@@ -34,7 +34,5 @@ const insertProducts = async (products) => {
 
 const getProductById = (productId) => ProductModel.findOne({ productId });
 
-module.exports = {
-  insertProducts,
-  getProductById
-};
+module.exports.insertProducts = insertProducts;
+module.exports.getProductById = getProductById;
