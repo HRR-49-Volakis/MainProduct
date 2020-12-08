@@ -27,7 +27,7 @@ const ProductSchema = mongoose.Schema({
 ProductSchema.index({ productId: 1, productName: 1 });
 const ProductModel = mongoose.model('Products', ProductSchema);
 
-const insertProducts = async (products) => {
+const insertProducts = (products) => {
   if (!products) return products;
   return ProductModel.insertMany(products);
 };
