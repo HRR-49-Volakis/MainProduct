@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const { UserController } = require('../controller');
+const { UserMiddleware } = require('../middleware');
 
-router.post('/create', UserController.signUp);
 router.post('/login', UserController.logIn);
-router.put('/update', UserController.updateAccount);
 router.delete('/delete', UserController.deleteAccount);
+
+router.use('*', UserMiddleware.invalidUserFields);
+router.post('/create', UserController.signUp);
+router.put('/update', UserController.updateAccount);
 
 module.exports = router;
