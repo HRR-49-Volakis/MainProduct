@@ -28,3 +28,7 @@ CREATE TABLE member (
   created_at TIMESTAMP,
   updated_at TIMESTAMP
 );
+
+CREATE INDEX product_index ON ikea.product (name);
+CREATE INDEX usernameIndex ON ikea.member (username);
+CREATE INDEX passwordIndex ON ikea.member (password);
