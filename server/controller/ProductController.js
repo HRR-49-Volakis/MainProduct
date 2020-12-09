@@ -1,4 +1,3 @@
-const express = require('express');
 const { mongo, cassandra, postgress } = require('../../database');
 
 exports.productById = (req, res, next) => {
@@ -29,6 +28,6 @@ exports.productById = (req, res, next) => {
       .catch(e => {
         console.log('error in cassandra ', e);
         res.status(404).send({ message: 'error with products' });
-      })
+      });
   }
 };

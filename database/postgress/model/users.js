@@ -1,5 +1,7 @@
+const postgress = require('../index');
+
 const createAccount = ({ name, last, username, password, sex, email, city, state, zip, created_at }) => {
-  return client.query(`INSERT INTO member (name, last, username, password, sex, email, city, state, zip, created_at)
+  return postgress.client.query(`INSERT INTO member (name, last, username, password, sex, email, city, state, zip, created_at)
 	VALUES ('${name}', '${last}', '${username}', '${password}', '${sex}', '${email}', '${city}', '${state}', '${zip}', '${created_at}');`);
 };
 
@@ -10,7 +12,7 @@ const signIn = ({ username, password }) => {
 
 };
 const updateAccount = ({ name, last, username, password, sex, email, city, state, zip, updated_at }) => {
-  return client.query(`
+  return postgress.client.query(`
     UPDATE member
       SET
         name = '${name}',
@@ -28,7 +30,7 @@ const updateAccount = ({ name, last, username, password, sex, email, city, state
       password = '${password}';`);
 };
 const deleteAccount = ({ username, password }) => {
-  return client.query(`DELETE FROM member WHERE username = '${username}' AND password = '${password}'`);
+  return postgress.client.query(`DELETE FROM member WHERE username = '${username}' AND password = '${password}'`);
 };
 
 module.exports.createAccount = createAccount;

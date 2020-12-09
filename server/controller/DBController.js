@@ -1,4 +1,3 @@
-const express = require('express');
 const { cassandra, mongo, postgress } = require('../../database');
 
 exports.postgressExecute = (req, res, next) => {
