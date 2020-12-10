@@ -1,3 +1,6 @@
+import styled from 'styled-components';
+
+const AppStyles = styled.div`
 body {
   background-color: white;
 }
@@ -455,3 +458,6 @@ body {
   background-color: rgba(1, 1, 1, .04);
   cursor: pointer;
 }
+`;
+
+export default AppStyles;

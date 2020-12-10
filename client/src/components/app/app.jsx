@@ -1,12 +1,13 @@
 import React from 'react';
 import axios from 'axios';
-import Carousel from './Carousel.jsx';
-import Grid from './Grid.jsx';
-import Exit from './Exit.jsx';
-import '../styles/styles.css';
-import NavBar from './NavBar.jsx';
-import ProductPath from './ProductPath.jsx';
-import ProductIdentifier from './ProductIdentifier.jsx';
+import Carousel from '../Carousel.jsx';
+import Grid from '../Grid.jsx';
+import Exit from '../Exit.jsx';
+import NavBar from '../NavBar.jsx';
+import ProductPath from '../ProductPath.jsx';
+import ProductIdentifier from '../ProductIdentifier.jsx';
+import AppStyles from './AppStyles.jsx';
+import { ModalProvider } from '../modal/index.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -101,20 +102,22 @@ class App extends React.Component {
 
   zoomPanHandler(xDelta, yDelta) {
     this.setState({ xDelta: xDelta, yDelta: yDelta, imageLayout: [<Carousel images={this.state.images} index={this.state.currentIndex} removeCarousel={this.removeCarousel} currentImage={this.state.currentImage} xDelta={xDelta} yDelta={yDelta} isZoomed={this.state.isZoomed} zoomPanHandler={this.zoomPanHandler} zoomClickHandler={this.zoomClickHandler} scrollBarClickHandler={this.scrollBarClickHandler} arrowClickHandler={this.arrowClickHandler} numberOfImages={this.state.numberOfImages} />] });
-
   }
 
   render() {
     return (
-      <div>
-        <NavBar />
-        <ProductPath productName={this.state.productName} />
-        <Grid addCarousel={this.addCarousel} productName={this.state.productName} images={this.state.images} />
-        {this.state.imageLayout}
-        <ProductIdentifier productIdentifier={this.state.productIdentifier} />
-      </div>
+      <AppStyles>
+        <ModalProvider>
+          <NavBar />
+          <ProductPath productName={this.state.productName} />
+          <Grid addCarousel={this.addCarousel} productName={this.state.productName} images={this.state.images} />
+          {this.state.imageLayout}
+          <ProductIdentifier productIdentifier={this.state.productIdentifier} />
+        </ModalProvider>
+      </AppStyles>
     );
   }
 }
+
 
 export default App;
