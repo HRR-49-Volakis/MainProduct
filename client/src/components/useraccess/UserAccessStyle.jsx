@@ -10,7 +10,6 @@ const UserAccessStyles = styled.div`
   }
   .header {
     margin 0 5%;
-    background-color: red;
   }
   .cover {
     display: flex;
@@ -71,11 +70,22 @@ const UserAccessStyles = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: blue;
   }
   .innerLeft {
     margin: auto;
-    background-color: purple;
+    width: 100%;
+  }
+  .media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 6%;
+  }
+  .social {
+    width: 35px;
+    height: 35px;
+    margin: 0 4%;
   }
 `;
 

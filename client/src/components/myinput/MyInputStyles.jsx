@@ -2,17 +2,27 @@ import styled from 'styled-components';
 
 const InputStyles = styled.div`
   display: flex;
-  background-color: red;
   width: 60%;
+  margin 2% 0;
+  border: 1px #D3D3D3 solid;
+  border-radius 0.4rem;
   align-items: center;
+  &:focus-within {
+    border: 1px black solid;
+  }
   .icon {
-    height: 35px;
-    width: 35px;
-    color: light-grey;
+    height: ${props => props.dimensions.height};
+    width: ${props => props.dimensions.width};
   }
   input {
     width: 100%;
     padding: 8px;
+    border-width: 0px;
+    border: none;
+    border-radius 0.4rem;
+    &:focus {
+      outline: none !important;
+    }
   }
 `;
 

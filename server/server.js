@@ -1,5 +1,6 @@
 const path = require('path');
 const cors = require('cors');
+const newRelic = require('newrelic');
 const bodyParser = require('body-parser');
 const express = require('express');
 const routes = require('./routes');

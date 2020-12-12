@@ -25,7 +25,6 @@ exports.logIn = (req, res, next) => {
   if (db === 'mongo') {
     userAction = mongo.UserModel.LogIn;
   } else if (db === 'postgress') {
-    console.log('hhey')
     userAction = postgress.UserModel.signIn;
   } else if (db === 'cassandra') {
     userAction = cassandra.UserModel.getMember;
