@@ -5,22 +5,11 @@ import MyButton from '../mybutton/index.jsx';
 import AccountFields from '../account_fields/index.jsx';
 import UserAccessStyles from './UserAccessStyle.jsx';
 import { useModalContext } from '../modal/index.jsx';
+import { MemberService } from '../../services';
 
 export default function UserAccess(props) {
-  let name = 'John';
-  const setName = (t) => name = t;
-  const [last, setLast] = useState('Campbell');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [sex, setSex] = useState('M');
-  const [email, setEmail] = useState('jcampbell@gmail.com');
-  const [city, setCity] = useState('tampa');
-  const [state, setState] = useState('florida');
-  const [zip, setZip] = useState('65432');
-
-  const sendAll = () => {
-    console.log('hey ', name)
-  };
+  const [username, setUsername] = useState('Hollis80');
+  const [password, setPassword] = useState('NGK5LGj6pISdJp_');
 
   return {
     children: (
@@ -46,9 +35,8 @@ export default function UserAccess(props) {
               />
               <MemberAccount
                 test={(he) => hey(he)}
-                clicky={sendAll}
-                user={{ name, last, username, password, sex, email, city, state, zip }}
-                actions={{ setName, setLast, setUsername, setPassword, setSex, setEmail, setCity, setState, setZip }}
+                clicky={() => console.log('update')}
+                user={{ username, password }}
               />
             </div>
             <div className="media">
@@ -76,34 +64,74 @@ export default function UserAccess(props) {
 };
 
 const MemberAccount = (props) => {
-  const { openModal } = useModalContext();
-  const { name, last, username, password, sex, email, city, state, zip } = props.user;
-  const { setName, setLast, setUsername, setPassword, setSex, setEmail, setCity, setState, setZip } = props.actions;
-  console.log('maaa name ', name)
-  const signInHandler = () => {
-    Object.defineProperty(AccountFields, 'test', { value: setName, writable: true, configurable: true });
-    Object.defineProperty(AccountFields, 'clicky', { value: props.clicky, writable: true, configurable: true });
-    Object.defineProperty(AccountFields, 'name', { value: name, writable: true, configurable: true });
-    Object.defineProperty(AccountFields, 'setName', { value: setName, writable: true });
-    Object.defineProperty(AccountFields, 'last', { value: last, writable: true });
-    Object.defineProperty(AccountFields, 'setLast', { value: setLast, writable: true });
-    Object.defineProperty(AccountFields, 'username', { value: username, writable: true });
-    Object.defineProperty(AccountFields, 'setUsername', { value: setUsername, writable: true });
-    Object.defineProperty(AccountFields, 'password', { value: password, writable: true });
-    Object.defineProperty(AccountFields, 'setPassword', { value: setPassword, writable: true });
-    Object.defineProperty(AccountFields, 'sex', { value: sex, writable: true });
-    Object.defineProperty(AccountFields, 'setSex', { value: setSex, writable: true });
-    Object.defineProperty(AccountFields, 'email', { value: email, writable: true });
-    Object.defineProperty(AccountFields, 'setEmail', { value: setEmail, writable: true });
-    Object.defineProperty(AccountFields, 'city', { value: city, writable: true });
-    Object.defineProperty(AccountFields, 'setCity', { value: setCity, writable: true });
-    Object.defineProperty(AccountFields, 'state', { value: state, writable: true });
-    Object.defineProperty(AccountFields, 'setState', { value: setState, writable: true });
-    Object.defineProperty(AccountFields, 'zip', { value: zip, writable: true });
-    Object.defineProperty(AccountFields, 'setZip', { value: setZip, writable: true });
+  const { openModal, closeModal } = useModalContext();
+  const { username, password } = props.user;
+  let name = '';
+  let last = '';
+  let usr = username;
+  let pass = password;
+  let sex = '';
+  let email = '';
+  let city = '';
+  let zip = '';
+  const setName = (newName) => name = newName;
+  const setLast = (newLast) => last = newLast;
+  const setSex = (newSex) => sex = newSex;
+  const setEmail = (newEmail) => email = newEmail;
+  const setCity = (newCity) => city = newCity;
+  const setUsername = (newUsername) => usr = newUsername;
+  const setPassword = (newPassword) => pass = newPassword;
+  const setZip = (newZip) => zip = newZip;
 
-    openModal(AccountFields);
+  const updateHandler = () => {
+    console.log(name)
+    console.log(last)
+    console.log(sex)
+    console.log(email)
+    console.log(city)
+    console.log(zip)
+    console.log(usr)
+    console.log(pass)
+    closeModal();
   };
+
+  const signInHandler = () => {
+    MemberService.loginMemberService({ username, password })
+      .then(result => {
+        if (result.status) {
+          const user = result.user;
+          setName(user.name);
+          setLast(user.last);
+          setSex(user.sex);
+          setEmail(user.email);
+          setCity(user.city);
+          setZip(user.zip);
+
+          const currentUser = {
+            name,
+            setName,
+            last,
+            setLast,
+            usr,
+            setUsername,
+            pass,
+            setPassword,
+            sex,
+            setSex,
+            email,
+            setEmail,
+            city,
+            setCity,
+            zip,
+            setZip
+          };
+
+          openModal(() => AccountFields({ user: currentUser, updateHandler }));
+        }
+      })
+      .catch(e => console.log('error sending the login ', e));
+  };
+
   return (
     <MyButton
       color={"white"}

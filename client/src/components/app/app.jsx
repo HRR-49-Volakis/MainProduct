@@ -8,7 +8,7 @@ import ProductPath from '../ProductPath.jsx';
 import ProductIdentifier from '../ProductIdentifier.jsx';
 import AppStyles from './AppStyles.jsx';
 import { ModalProvider } from '../modal/index.jsx';
-import { getProductService } from '../../services/ProductService.js';
+import { ProductService } from '../../services';
 
 
 class App extends React.Component {
@@ -51,7 +51,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    getProductService(this.state.requestedProductId)
+    ProductService.getProductService(this.state.requestedProductId)
       .then(products => {
         const { id, name, care, designer, images, materials } = products[0];
         this.setState({ images, productName: name, productIdentifier: id });

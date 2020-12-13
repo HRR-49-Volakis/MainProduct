@@ -17,8 +17,10 @@ const createMember = ({ id, name, last, username, password, sex, email, city, st
 		${new Date().getTime()});`);
 };
 
-const getMember = ({ username, password }) => {
-  return cassandra.client.execute(`SELECT * FROM member WHERE username = '${username}' AND password = '${password}' ALLOW FILTERING;`);
+const logIn = ({ username, password }) => {
+  return cassandra.client.execute(`SELECT * FROM member WHERE username = '${username}' AND password = '${password}' ALLOW FILTERING;`)
+    .then(result => (result.rows.length > 0) ? result.rows[0] : {})
+    .catch(e => console.log('error at sign in in cassandra'));
 };
 
 const getMemberId = ({ username, password }) => {
@@ -44,7 +46,7 @@ const deleteMember = (id) => {
   return cassandra.client.execute(`DELETE FROM product WHERE id = '${id}';`);
 };
 
-module.exports.getMember = getMember;
+module.exports.logIn = logIn;
 module.exports.getMemberId = getMemberId;
 module.exports.updateMember = updateMember;
 module.exports.deleteMember = deleteMember;

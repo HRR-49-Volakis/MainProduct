@@ -3,6 +3,7 @@ const { mongo, cassandra, postgress } = require('../../database');
 let userAction;
 let message;
 let messageError;
+let currentDB;
 
 exports.signUp = (req, res, next) => {
   const { user = null } = req.body;
@@ -22,19 +23,20 @@ exports.signUp = (req, res, next) => {
 };
 exports.logIn = (req, res, next) => {
   const { username = '', password = '' } = req.body;
-  if (db === 'mongo') {
-    userAction = mongo.UserModel.LogIn;
-  } else if (db === 'postgress') {
-    userAction = postgress.UserModel.signIn;
-  } else if (db === 'cassandra') {
-    userAction = cassandra.UserModel.getMember;
+  try {
+    if (db !== '') {
+      currentDB = (db === 'mongo') ? mongo : (db === 'postgress') ? postgres : cassandra;
+      currentDB.UserModel.logIn({ username, password })
+        .then(result => res.status(200).send({ status: 1, user: result }))
+        .catch(e => {
+          console.log('error is user creation ', e);
+          res.status(404).send({ status: 0, message: `${db} user does not exist` });
+        });
+    }
+  } catch (e) {
+    console.log('error is user creation ', e);
+    res.status(404).send({ status: 0, message: `${db} user does not exist` });
   }
-  userAction({ username, password })
-    .then(result => res.status(200).send({ message: 'logged in' }))
-    .catch(e => {
-      console.log('error is user creation ', e);
-      res.status(404).send({ message: `${db} user does not exist` });
-    });
 };
 exports.updateAccount = (req, res, next) => {
   const { user = {} } = req.body;

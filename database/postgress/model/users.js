@@ -5,9 +5,10 @@ const createAccount = ({ name, last, username, password, sex, email, city, state
 	VALUES ('${name}', '${last}', '${username}', '${password}', '${sex}', '${email}', '${city}', '${state}', '${zip}', to_timestamp(${Date.now() / 1000.0}), to_timestamp(${Date.now() / 1000.0}));`);
 };
 
-const signIn = ({ username, password }) => {
-  return postgress.client.query(`SELECT * FROM member WHERE username = '${username}' AND password = '${password}';`);
-
+const logIn = ({ username, password }) => {
+  return postgress.client.query(`SELECT * FROM member WHERE username = '${username}' AND password = '${password}';`)
+    .then(result => result)
+    .catch(e => console.log('error at sign in in postgress'));
 };
 const updateAccount = ({ name, last, username, password, sex, email, city, state, zip }) => {
   return postgress.client.query(`
@@ -31,7 +32,7 @@ const deleteAccount = ({ username, password }) => {
   return postgress.client.query(`DELETE FROM member WHERE username = '${username}' AND password = '${password}'`);
 };
 
-module.exports.signIn = signIn;
+module.exports.logIn = logIn;
 module.exports.createAccount = createAccount;
 module.exports.updateAccount = updateAccount;
 module.exports.deleteAccount = deleteAccount;

@@ -26,12 +26,16 @@ const createUser = (user) => {
   return newUser.save();
 };
 
-const logIn = ({ username, password }) => UserModel.findOne({ username, password });
+const logIn = ({ username, password }) => {
+  return UserModel.findOne({ username, password }, { _id: 0, __v: 0 })
+    .then(result => result)
+    .catch(e => console.log('error at sign in in mongo'));
+};
 const updateUser = (user) => UserModel.findOneAndUpdate({ username: user.username, password: user.password }, user);
 const deleteUser = ({ username, password }) => UserModel.deleteOne({ username, password });
 
 
-module.exports.LogIn = logIn;
+module.exports.logIn = logIn;
 module.exports.createUser = createUser;
 module.exports.updateUser = updateUser;
 module.exports.deleteUser = deleteUser;
