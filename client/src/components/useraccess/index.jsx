@@ -7,11 +7,11 @@ import UserAccessStyles from './UserAccessStyle.jsx';
 import { useModalContext } from '../modal/index.jsx';
 
 export default function UserAccess(props) {
-  let name = 'Jhon';
+  let name = 'John';
   const setName = (t) => name = t;
   const [last, setLast] = useState('Campbell');
-  const [username, setUsername] = useState('jcampbell');
-  const [password, setPassword] = useState('password');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [sex, setSex] = useState('M');
   const [email, setEmail] = useState('jcampbell@gmail.com');
   const [city, setCity] = useState('tampa');

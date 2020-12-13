@@ -8,6 +8,8 @@ import ProductPath from '../ProductPath.jsx';
 import ProductIdentifier from '../ProductIdentifier.jsx';
 import AppStyles from './AppStyles.jsx';
 import { ModalProvider } from '../modal/index.jsx';
+import { getProductService } from '../../services/ProductService.js';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -49,15 +51,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`/api/product/${this.state.requestedProductId}`)
-      .then((response) => {
-        this.setState({ productId: response.data.productId, productName: response.data.productName, productIdentifier: response.data.productIdentifier, productDetails: response.data.productDetails, images: response.data.images }, function() {
-          this.setState({ numberOfImages: this.state.images.length });
-        });
+    getProductService(this.state.requestedProductId)
+      .then(products => {
+        const { id, name, care, designer, images, materials } = products[0];
+        this.setState({ images, productName: name, productIdentifier: id });
       })
-      .catch(function(err) {
-        console.log(err);
-      });
+      .catch(e => console.log('there was an error with getting the products ', e));
   }
 
   addCarousel(event, index) {
