@@ -40,6 +40,7 @@ exports.logIn = (req, res, next) => {
 };
 exports.updateAccount = (req, res, next) => {
   const { user = {} } = req.body;
+  console.log('the req body ', req.body)
   let id = -1;
   if (db === 'mongo') {
     userAction = mongo.UserModel.updateUser;

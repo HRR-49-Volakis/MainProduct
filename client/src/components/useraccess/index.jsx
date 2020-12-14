@@ -8,8 +8,8 @@ import { useModalContext } from '../modal/index.jsx';
 import { MemberService } from '../../services';
 
 export default function UserAccess(props) {
-  const [username, setUsername] = useState('Hollis80');
-  const [password, setPassword] = useState('NGK5LGj6pISdJp_');
+  const [username, setUsername] = useState('Jacklyn_Yost');
+  const [password, setPassword] = useState('EeuuYbDZyhkIFZ7');
 
   return {
     children: (
@@ -66,6 +66,7 @@ export default function UserAccess(props) {
 const MemberAccount = (props) => {
   const { openModal, closeModal } = useModalContext();
   const { username, password } = props.user;
+  let id;
   let name = '';
   let last = '';
   let usr = username;
@@ -73,26 +74,37 @@ const MemberAccount = (props) => {
   let sex = '';
   let email = '';
   let city = '';
+  let state = '';
   let zip = '';
   const setName = (newName) => name = newName;
   const setLast = (newLast) => last = newLast;
   const setSex = (newSex) => sex = newSex;
   const setEmail = (newEmail) => email = newEmail;
   const setCity = (newCity) => city = newCity;
+  const setState = (newState) => state = newState;
   const setUsername = (newUsername) => usr = newUsername;
   const setPassword = (newPassword) => pass = newPassword;
   const setZip = (newZip) => zip = newZip;
 
   const updateHandler = () => {
-    console.log(name)
-    console.log(last)
-    console.log(sex)
-    console.log(email)
-    console.log(city)
-    console.log(zip)
-    console.log(usr)
-    console.log(pass)
-    closeModal();
+    const modifiedUser = {
+      id,
+      name,
+      last,
+      username: usr,
+      password: pass,
+      sex,
+      email,
+      city,
+      state,
+      zip
+    };
+    MemberService.updateMemberService({ user: modifiedUser })
+      .then(result => {
+        console.log('this is the result after updating ', result);
+        closeModal();
+      })
+      .catch(e => console.log('error trying to update the member ', e));
   };
 
   const signInHandler = () => {
@@ -100,11 +112,13 @@ const MemberAccount = (props) => {
       .then(result => {
         if (result.status) {
           const user = result.user;
+          id = user.id;
           setName(user.name);
           setLast(user.last);
           setSex(user.sex);
           setEmail(user.email);
           setCity(user.city);
+          setState(user.state);
           setZip(user.zip);
 
           const currentUser = {
@@ -122,6 +136,8 @@ const MemberAccount = (props) => {
             setEmail,
             city,
             setCity,
+            state,
+            setState,
             zip,
             setZip
           };

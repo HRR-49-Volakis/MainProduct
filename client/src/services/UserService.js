@@ -17,6 +17,22 @@ const MemberService = {
           reject(error);
         });
     });
+  },
+  updateMemberService: ({ user }) => {
+    return new Promise((resolve, reject) => {
+      ServiceInstance.request({ url: `${member_endpoint.UPDATE_MEMBER}`, params: { user }, method: 'PUT' })
+        .then(response => {
+          if (response === undefined) {
+            reject('Error in the updating the response');
+          } else {
+            resolve(response);
+          }
+        })
+        .catch(error => {
+          console.log('this error comes from (updateMemberService) ', error);
+          reject(error);
+        })
+    });
   }
 }
 
