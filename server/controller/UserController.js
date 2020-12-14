@@ -78,6 +78,7 @@ exports.updateAccount = (req, res, next) => {
 };
 exports.deleteAccount = (req, res, next) => {
   const { username = '', password = '' } = req.body;
+  console.log('this is the requ', req.body)
   if (db === 'mongo') {
     userAction = UserModel.deleteUser;
   } else if (db === 'postgress') {
@@ -91,6 +92,7 @@ exports.deleteAccount = (req, res, next) => {
           throw result;
         }
         const id = result.rows[0].id;
+        console.log('the id is ', id)
         userAction(id)
           .then(result => {
             if (result.rowCount <= 0) {

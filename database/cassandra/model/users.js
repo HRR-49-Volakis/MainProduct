@@ -43,7 +43,7 @@ const updateMember = ({ name, last, username, password, sex, email, city, state,
 };
 
 const deleteMember = (id) => {
-  return cassandra.client.execute(`DELETE FROM product WHERE id = '${id}';`);
+  return cassandra.client.execute(`DELETE FROM member WHERE id = '${id}';`);
 };
 
 module.exports.logIn = logIn;

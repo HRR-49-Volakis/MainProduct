@@ -3,12 +3,13 @@ import AccountFieldStyles from './AccountFieldStyles.jsx';
 import MyInput from '../myinput/index.jsx';
 import MyButton from '../mybutton/index.jsx';
 
-const AccountFields = ({ user, updateHandler }) => {
+const AccountFields = ({ user, updateHandler, signUpHandler, deleteHandler }) => {
   return {
     children: (
       <AccountFieldStyles>
         <header>
-          <h2>Hi, {AccountFields.user || ''}!</h2>
+          <h2>Hi, {user.name || 'future member'}!</h2>
+          {(updateHandler) ? <div className="delete" onClick={() => deleteHandler()}>Remove Account</div> : null}
         </header>
         <div className="mainContent">
           {
@@ -32,10 +33,11 @@ const AccountFields = ({ user, updateHandler }) => {
         </div>
         <div className="btn">
           <MyButton
+            label={(signUpHandler) ? "Sign up" : "Update"}
             color={"white"}
             hover={"#1E116C"}
             background={"rgb(17, 30, 108)"}
-            click={() => updateHandler()}
+            click={() => (signUpHandler) ? signUpHandler() : updateHandler()}
           />
         </div>
       </AccountFieldStyles>

@@ -6,6 +6,7 @@ const AccountFieldsStyles = styled.div`
   header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background-color: rgb(17, 30, 108);
     width: 100%;
     border-top-left-radius: 1rem;
@@ -13,6 +14,19 @@ const AccountFieldsStyles = styled.div`
     h2 {
       margin-left: 2%;
       color: white !important;
+    }
+    .delete {
+      padding: 1%;
+      cursor: pointer;
+      margin-right: 2%;
+      color: white;
+      height: 18%;
+      border 1px solid white;
+      border-radius: 0.8rem;
+      &:hover {
+        color: red;
+        border 1px solid red;
+      }
     }
   }
   .mainContent {

@@ -7,28 +7,27 @@ import ScrollBar from './ScrollBar.jsx';
 import CarouselImage from './CarouselImage.jsx';
 
 var Carousel = function(props) {
-  console.log(props.index, ' currentindex');
   return (
     <div>
       <div id='carousel' className='carousel'>
-        <Exit removeCarousel={props.removeCarousel}/>
+        <Exit removeCarousel={props.removeCarousel} />
         <div id='carouselContainer'>
           <div id='imageAndArrowContainer'>
-            {props.index > 0 ? <LeftArrow arrowClickHandler={props.arrowClickHandler}/> : ''}
+            {props.index > 0 ? <LeftArrow arrowClickHandler={props.arrowClickHandler} /> : ''}
             {/* <div id='carouselImageContainer' className='carouselImageContainer'>
               <img id='currentImage' className='carouselImage' src={props.currentImage}></img>
             </div> */}
             {props.images.map(function(image, index) {
               return (
-                <CarouselImage key={index} zoomClickHandler={props.zoomClickHandler} isZoomed={props.isZoomed} index={index} xDelta={props.xDelta} yDelta={props.yDelta} zoomPanHandler={props.zoomPanHandler}currentImageIndex={props.index} currentImage={image}/>
+                <CarouselImage key={index} zoomClickHandler={props.zoomClickHandler} isZoomed={props.isZoomed} index={index} xDelta={props.xDelta} yDelta={props.yDelta} zoomPanHandler={props.zoomPanHandler} currentImageIndex={props.index} currentImage={image} />
               );
             })}
-            {props.index < props.numberOfImages - 1 ? <RightArrow arrowClickHandler={props.arrowClickHandler}/> : ''}
+            {props.index < props.numberOfImages - 1 ? <RightArrow arrowClickHandler={props.arrowClickHandler} /> : ''}
           </div>
           <div id='scrollBarContainer'>
             {props.images.map(function(image, index) {
               return (
-                <ScrollBar key={index} index={index} currentImageIndex={props.index} scrollBarClickHandler={props.scrollBarClickHandler}/>
+                <ScrollBar key={index} index={index} currentImageIndex={props.index} scrollBarClickHandler={props.scrollBarClickHandler} />
               );
             })
             }

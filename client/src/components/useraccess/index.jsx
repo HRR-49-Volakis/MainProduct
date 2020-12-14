@@ -34,8 +34,11 @@ export default function UserAccess(props) {
                 source={"https://image.flaticon.com/icons/png/512/166/166274.png"}
               />
               <MemberAccount
-                test={(he) => hey(he)}
-                clicky={() => console.log('update')}
+                label={"Sign in"}
+                color={"white"}
+                hover={"#1E116C"}
+                action={"signin"}
+                background={"rgb(17, 30, 108)"}
                 user={{ username, password }}
               />
             </div>
@@ -51,10 +54,14 @@ export default function UserAccess(props) {
             <img className="logo" src="https://newagetee.com/wp-content/uploads/2020/07/redirect-28.png" />
             <h2 className="myH2">Don't have an account?</h2>
             <h4 className="myText">I'm baby hexagon XOXO marfa gastropub, health goth jean shorts before they sold out photo booth knausgaard raclette.</h4>
-            <div
+
+            <MemberAccount
               className="myButton"
-              onClick={() => console.log('sign uppp sign up')}
-            >SIGN UP</div>
+              label={"Sign up"}
+              action={"signup"}
+              user={{ username, password }}
+              hover={"rgba(17, 30, 150, 0.6)"}
+            />
           </div>
           <img className='img' src='https://www.ikea.com/ch/en/images/products/ravaror-tray-foldable-birch-plywood__0930005_PE790569_S5.JPG' />
         </div>
@@ -86,8 +93,43 @@ const MemberAccount = (props) => {
   const setPassword = (newPassword) => pass = newPassword;
   const setZip = (newZip) => zip = newZip;
 
-  const updateHandler = () => {
-    const modifiedUser = {
+  const setUser = (user) => {
+    id = user.id;
+    setName(user.name);
+    setLast(user.last);
+    setSex(user.sex);
+    setEmail(user.email);
+    setCity(user.city);
+    setState(user.state);
+    setZip(user.zip);
+
+    return {
+      name,
+      setName,
+      last,
+      setLast,
+      usr,
+      setUsername,
+      pass,
+      setPassword,
+      sex,
+      setSex,
+      email,
+      setEmail,
+      city,
+      setCity,
+      state,
+      setState,
+      zip,
+      setZip
+    };
+  };
+  const resetUserFields = () => {
+    [id, name, last, usr, pass, sex, email, city, state, zip].forEach(item => item = '');
+  };
+
+  const getFinalVersion = () => {
+    return {
       id,
       name,
       last,
@@ -99,61 +141,78 @@ const MemberAccount = (props) => {
       state,
       zip
     };
-    MemberService.updateMemberService({ user: modifiedUser })
+  };
+
+  const preSignUpHandler = () => {
+    openModal(() => AccountFields({
+      user: setUser({
+        id: Math.floor(Math.random() * 10000000).toString(),
+        name,
+        last,
+        sex,
+        email,
+        city,
+        state,
+        zip
+      }), signUpHandler
+    }));
+  };
+
+  const validate = () => {
+    return [id, name, last, usr, pass, sex, email, city, state, zip].every(item => item.length > 0);
+  };
+
+  const updateHandler = () => {
+    MemberService.updateMemberService({ user: getFinalVersion() })
       .then(result => {
         console.log('this is the result after updating ', result);
+        resetUserFields();
         closeModal();
       })
       .catch(e => console.log('error trying to update the member ', e));
   };
-
+  const signUpHandler = () => {
+    if (validate()) {
+      console.log('the id ', id);
+      MemberService.createMemberService({ user: getFinalVersion() })
+        .then(result => {
+          console.log('this is the result of our creation ', result);
+          resetUserFields();
+          closeModal();
+        })
+        .catch(e => console.log('error trying to create a member ', e));
+    } else {
+      console.log('rats! I wanted to sign up')
+    }
+  };
   const signInHandler = () => {
     MemberService.loginMemberService({ username, password })
       .then(result => {
         if (result.status) {
           const user = result.user;
-          id = user.id;
-          setName(user.name);
-          setLast(user.last);
-          setSex(user.sex);
-          setEmail(user.email);
-          setCity(user.city);
-          setState(user.state);
-          setZip(user.zip);
-
-          const currentUser = {
-            name,
-            setName,
-            last,
-            setLast,
-            usr,
-            setUsername,
-            pass,
-            setPassword,
-            sex,
-            setSex,
-            email,
-            setEmail,
-            city,
-            setCity,
-            state,
-            setState,
-            zip,
-            setZip
-          };
-
-          openModal(() => AccountFields({ user: currentUser, updateHandler }));
+          openModal(() => AccountFields({ user: setUser(user), updateHandler, deleteHandler }));
         }
       })
       .catch(e => console.log('error sending the login ', e));
   };
+  const deleteHandler = () => {
+    console.log({ username: usr, password: pass })
+    MemberService.deleteMemberService({ username: usr, password: pass })
+      .then(result => {
+        console.log('this is the result of our deletion ', result);
+        resetUserFields();
+        closeModal();
+      })
+      .catch(e => console.log('error trying to delete a member ', e));
+  };
 
   return (
     <MyButton
-      color={"white"}
-      hover={"#1E116C"}
-      background={"rgb(17, 30, 108)"}
-      click={signInHandler}
+      label={props.label}
+      color={props.color}
+      hover={props.hover}
+      background={props.background}
+      click={(props.action === 'signup') ? preSignUpHandler : signInHandler}
     />
   );
 };

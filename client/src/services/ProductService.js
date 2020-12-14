@@ -21,13 +21,3 @@ const ProductService = {
 };
 
 export default ProductService;
-
-// axios.get(`/api/product/${this.state.requestedProductId}`)
-//   .then((response) => {
-//     this.setState({ productId: response.data.productId, productName: response.data.productName, productIdentifier: response.data.productIdentifier, productDetails: response.data.productDetails, images: response.data.images }, function() {
-//       this.setState({ numberOfImages: this.state.images.length });
-//     });
-//   })
-//   .catch(function(err) {
-//     console.log(err);
-//   });

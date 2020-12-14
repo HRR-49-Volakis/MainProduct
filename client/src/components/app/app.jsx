@@ -77,9 +77,7 @@ class App extends React.Component {
     let newImage = isLeft ? this.state.images[this.state.currentIndex - 1] : this.state.images[this.state.currentIndex + 1];
     let newIndex = isLeft ? this.state.currentIndex - 1 : this.state.currentIndex + 1;
     this.setState({ currentImage: newImage, currentIndex: newIndex, isZoomed: false, imageLayout: [<Carousel images={this.state.images} index={newIndex} removeCarousel={this.removeCarousel} currentImage={newImage} isZoomed={false} zoomClickHandler={this.zoomClickHandler} scrollBarClickHandler={this.scrollBarClickHandler} arrowClickHandler={this.arrowClickHandler} numberOfImages={this.state.numberOfImages} />] }, function() {
-      console.log(this.state.currentIndex);
     });
-    console.log(isLeft ? 'left' : 'right');
   }
 
   scrollBarClickHandler(index) {

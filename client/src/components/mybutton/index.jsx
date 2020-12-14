@@ -9,7 +9,7 @@ const MyButton = (props) => {
       onClick={() => props.click()}
       background={props.background}
     >
-      Sign in
+      {props.label}
     </ButtonStyles>
   );
 };

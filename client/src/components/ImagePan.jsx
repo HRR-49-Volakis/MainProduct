@@ -12,10 +12,7 @@ var ImagePan = function(currentX, currentY) {
   yDelta = ((currentY - topMargin) / imageHeight) * ((imageHeight * zoom) - imageHeight);
   let xDelta = 0;
   xDelta = ((currentX - leftMargin) / imageWidth) * ((imageWidth * zoom) - imageWidth);
-  console.log('yDelta: ', yDelta);
-  console.log(currentY);
-  // console.log('xDelta: ', xDelta);
-  return {xDelta: -xDelta, yDelta: -yDelta};
+  return { xDelta: -xDelta, yDelta: -yDelta };
 };
 
 export default ImagePan;

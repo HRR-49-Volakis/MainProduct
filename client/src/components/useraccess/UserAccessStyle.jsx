@@ -51,9 +51,6 @@ const UserAccessStyles = styled.div`
     width: 18%;
     padding: 1.6%;
     border: 1px white solid;
-    &:hover {
-      background-color: rgba(17, 30, 150, 0.6);
-    }
   }
   .logo {
     max-height: 80px;
