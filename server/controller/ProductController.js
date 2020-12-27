@@ -1,7 +1,8 @@
 const { mongo, cassandra, postgress } = require('../../database');
+//s
 
 exports.productById = (req, res, next) => {
-  const productId = (req.params.productId && req.params.productId !== '') ? req.params.productId : 2;
+  const productId = (req.params.id && req.params.id !== '') ? req.params.id : 2;
   if (db === 'mongo') {
     mongo.ProductModel.getProductById(productId)
       .then(products => res.status(200).send(products))

@@ -2,7 +2,7 @@ const cassandra = require('cassandra-driver');
 const { UserModel, ProductModel } = require('../cassandra/model');
 
 const client = new cassandra.Client({
-  contactPoints: ['127.0.0.1'],
+  contactPoints: ['172.31.17.74'],
   localDataCenter: 'datacenter1',
   keyspace: 'ikea'
 });

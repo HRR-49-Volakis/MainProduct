@@ -51,7 +51,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    ProductService.getProductService(this.state.requestedProductId)
+    const url = window.location.href.split('/');
+    const candidateId = Number(url[url.length - 1]);
+    const id = (isNaN(candidateId) || candidateId === '') ? 2 : url[url.length - 1];
+    ProductService.getProductService(id)
       .then(products => {
         const { id, name, care, designer, images, materials } = products[0];
         this.setState({ images, productName: name, productIdentifier: id });
